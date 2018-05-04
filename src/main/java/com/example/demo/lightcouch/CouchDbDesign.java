@@ -18,7 +18,7 @@ package com.example.demo.lightcouch;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import org.lightcouch.DesignDocument.MapReduce;
+import com.example.demo.lightcouch.DesignDocument.MapReduce;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -27,8 +27,8 @@ import java.util.List;
 import java.util.Map;
 
 import static java.lang.String.format;
-import static org.lightcouch.CouchDbUtil.*;
-import static org.lightcouch.URIBuilder.buildUri;
+import static com.example.demo.lightcouch.CouchDbUtil.*;
+import static com.example.demo.lightcouch.URIBuilder.buildUri;
 
 /**
  * Provides API to work with design documents. 

@@ -92,7 +92,7 @@ public class DemoApplication {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Map map = new HashMap<String,Object>();
 
-		
+
 		/*ViewResults resultAdHoc = database.adhoc("function(doc) {emit(null, doc.name);}");
 
 		ViewResult<Map> result = database.queryView("_design/view3", Map.class, null, null);
@@ -122,15 +122,8 @@ public class DemoApplication {
 			System.out.println("len:"+foos.size());
 		}
 
-
-
 		messagingTemplate.convertAndSend("/topic/callback", foos);
 		return "callback";
 	}
-
-
-
-
-
 
 }

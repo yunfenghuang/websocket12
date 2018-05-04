@@ -21,14 +21,14 @@ import org.apache.commons.codec.Charsets;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.HttpResponse;
-import org.lightcouch.ReplicationResult.ReplicationHistory;
+import com.example.demo.lightcouch.ReplicationResult.ReplicationHistory;
 
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.Map;
 
-import static org.lightcouch.CouchDbUtil.*;
-import static org.lightcouch.URIBuilder.buildUri;
+import static com.example.demo.lightcouch.CouchDbUtil.*;
+import static com.example.demo.lightcouch.URIBuilder.buildUri;
 
 /**
  * This class provides access to the database replication API; a replication request 

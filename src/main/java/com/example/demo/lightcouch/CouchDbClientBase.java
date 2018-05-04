@@ -37,8 +37,8 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.lightcouch.CouchDbUtil.*;
-import static org.lightcouch.URIBuilder.buildUri;
+import static com.example.demo.lightcouch.CouchDbUtil.*;
+import static com.example.demo.lightcouch.URIBuilder.buildUri;
 
 /**
  * Contains a client Public API implementation.

@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static org.lightcouch.CouchDbUtil.*;
+import static com.example.demo.lightcouch.CouchDbUtil.*;
 
 /**
  * This class provides access to the <tt>View</tt> APIs.

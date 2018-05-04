@@ -22,8 +22,8 @@ import org.apache.commons.logging.LogFactory;
 import java.io.InputStream;
 import java.util.Properties;
 
-import static org.lightcouch.CouchDbUtil.*;
-import static org.lightcouch.CouchDbUtil.assertNotEmpty;
+import static com.example.demo.lightcouch.CouchDbUtil.*;
+import static com.example.demo.lightcouch.CouchDbUtil.assertNotEmpty;
 
 /**
  * Provides configuration to client instance.

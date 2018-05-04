@@ -32,12 +32,12 @@ import java.lang.reflect.Type;
 import java.net.URI;
 import java.util.List;
 
-import static org.lightcouch.CouchDbUtil.*;
-import static org.lightcouch.CouchDbUtil.assertNotEmpty;
-import static org.lightcouch.CouchDbUtil.close;
-import static org.lightcouch.CouchDbUtil.getAsString;
-import static org.lightcouch.URIBuilder.*;
-import static org.lightcouch.URIBuilder.buildUri;
+import static com.example.demo.lightcouch.CouchDbUtil.*;
+import static com.example.demo.lightcouch.CouchDbUtil.assertNotEmpty;
+import static com.example.demo.lightcouch.CouchDbUtil.close;
+import static com.example.demo.lightcouch.CouchDbUtil.getAsString;
+import static com.example.demo.lightcouch.URIBuilder.*;
+import static com.example.demo.lightcouch.URIBuilder.buildUri;
 
 /**
  * Contains database server specific APIs.

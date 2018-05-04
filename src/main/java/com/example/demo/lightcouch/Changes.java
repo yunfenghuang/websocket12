@@ -19,7 +19,7 @@ package com.example.demo.lightcouch;
 import com.google.gson.Gson;
 import org.apache.commons.codec.Charsets;
 import org.apache.http.client.methods.HttpGet;
-import org.lightcouch.ChangesResult.Row;
+import com.example.demo.lightcouch.ChangesResult.Row;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

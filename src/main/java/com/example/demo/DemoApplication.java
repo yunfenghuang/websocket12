@@ -1,10 +1,14 @@
 package com.example.demo;
 
+import com.example.demo.lightcouch.CouchDbClient;
+import com.example.demo.model.Foo;
 import com.example.demo.model.SocketMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jcouchdb.db.Database;
 import org.jcouchdb.document.BaseDocument;
+import org.jcouchdb.document.ValueRow;
+import org.jcouchdb.document.ViewResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,12 +20,12 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -38,7 +42,7 @@ public class DemoApplication {
 		m_logger.info("|======================================================|");
 		m_logger.info("|======================================================|");
 	}
-	@Bean
+	/*@Bean
 	public BaseDocument getDocument(){
 		//todo
 		//Server server = new ServerImpl("192.168.1.100",5964);
@@ -54,14 +58,19 @@ public class DemoApplication {
 		Database database = new Database("localhost","dp");
 		//BaseDocument baseDocument = database.getDocument(BaseDocument.class,"4667488c25f99c2a2fadd900b60003f9");
 		return database;
+	}*/
+
+	@Bean
+	public CouchDbClient getCouchDbClient(){
+		CouchDbClient couchDbClient = new CouchDbClient("dp",true,"http","localhost",5984,"","");
+		return couchDbClient;
 	}
 
 	@Autowired
 	private SimpMessagingTemplate messagingTemplate;
 	@Autowired
-	private BaseDocument baseDocument;
-	@Autowired
-	private Database database;
+	private CouchDbClient couchDbClient;
+
 
 
 	@GetMapping("/")
@@ -83,17 +92,39 @@ public class DemoApplication {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Map map = new HashMap<String,Object>();
 
-		String name = (String) baseDocument.getProperty("name");
-		String email = (String) baseDocument.getProperty("email");
+		
+		/*ViewResults resultAdHoc = database.adhoc("function(doc) {emit(null, doc.name);}");
 
-		map.put("name",name);
-		map.put("email",email);
-		map.put("age",Math.floor(Math.random()*10));
-		Map sonMap = new HashMap<String,Object>();
-		sonMap.put("detil","qwewqe");
-		sonMap.put("detil2","sdsad");
-		map.put("sonMap",sonMap);
-		messagingTemplate.convertAndSend("/topic/callback", map);
+		ViewResult<Map> result = database.queryView("_design/view3", Map.class, null, null);
+
+
+		List<ValueRow<Map>> res =  result.getRows();
+		for(ValueRow<Map> valueRow : res){
+			System.out.println(valueRow.toString());
+		}*/
+
+		/*List<Foo> list = database.view("example/foo")
+					.startKey("start-key")
+					.endKey("end-key")
+					.limit(10)
+					.includeDocs(true)
+					.query(Foo.class);
+*/
+
+		List<Foo> foos = couchDbClient.view("haha").includeDocs(true).query(Foo.class);
+		if(foos == null){
+			System.out.println("空");
+		}else {
+			for(Foo foo:foos){
+				System.out.println("id:"+foo.getDate());
+				System.out.println("date:"+foo.getSSID());
+			}
+			System.out.println("len:"+foos.size());
+		}
+
+
+
+		messagingTemplate.convertAndSend("/topic/callback", foos);
 		return "callback";
 	}
 

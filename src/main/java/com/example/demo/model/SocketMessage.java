@@ -1,12 +1,12 @@
-package com.example.demo.model;
+/*package com.example.demo.model;
 
 /**
- * Created by dp on 2018/5/2.
+ * Created by huang on 2018/5/2.
  */
-public class SocketMessage {
+/*public class SocketMessage {
 
     public String message;
 
     public String date;
 
-}
+}*/

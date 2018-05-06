@@ -62,7 +62,7 @@ public class DemoApplication {
 
 	@Bean
 	public CouchDbClient getCouchDbClient(){
-		CouchDbClient couchDbClient = new CouchDbClient("dp",true,"http","localhost",5984,"","");
+		CouchDbClient couchDbClient = new CouchDbClient("wifi",true,"http","localhost",5984,"admin","123456");
 		return couchDbClient;
 	}
 
@@ -73,7 +73,7 @@ public class DemoApplication {
 
 
 
-	@GetMapping("/")
+	/*@GetMapping("/")
 	public String index() {
 		return "index";
 	}
@@ -83,14 +83,14 @@ public class DemoApplication {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		message.date = df.format(new Date());
 		return message;
-	}
+	}*/
 
 	@Scheduled(fixedRate = 1000)
 	@SendTo("/topic/callback")
 	public Object callback() throws Exception {
 		// 发现消息
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Map map = new HashMap<String,Object>();
+		/*DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Map map = new HashMap<String,Object>();*/
 
 
 		/*ViewResults resultAdHoc = database.adhoc("function(doc) {emit(null, doc.name);}");
@@ -111,13 +111,14 @@ public class DemoApplication {
 					.query(Foo.class);
 */
 
-		List<Foo> foos = couchDbClient.view("haha").includeDocs(true).query(Foo.class);
+		List<Foo> foos = couchDbClient.view("view3/new-view").includeDocs(true).query(Foo.class);
 		if(foos == null){
 			System.out.println("空");
 		}else {
 			for(Foo foo:foos){
 				System.out.println("id:"+foo.getDate());
-				System.out.println("date:"+foo.getSSID());
+				System.out.println("MAC:"+foo.getMAC());
+				System.out.println("SEQUENCECOUNT:"+foo.getSEQUENCECOUNT());
 			}
 			System.out.println("len:"+foos.size());
 		}

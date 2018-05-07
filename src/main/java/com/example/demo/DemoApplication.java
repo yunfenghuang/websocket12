@@ -117,8 +117,8 @@ public class DemoApplication {
 		}else {
 			for(Foo foo:foos){
 				System.out.println("id:"+foo.getDate());
-				System.out.println("MAC:"+foo.getMAC());
-				System.out.println("SEQUENCECOUNT:"+foo.getSEQUENCECOUNT());
+				//System.out.println("MAC:"+foo.getMAC());
+				//System.out.println("SEQUENCECOUNT:"+foo.getSEQUENCECOUNT());
 			}
 			System.out.println("len:"+foos.size());
 		}
